@@ -13,6 +13,10 @@ const schema = mongoose.Schema({
     unique: true,
   },
   passwordHash: String,
+  key: {
+    type: String,
+    default: "",
+  },
 });
 
 schema.plugin(uniqueValidator);
@@ -24,9 +28,9 @@ schema.set("toJSON", {
     delete returnedObject.__v;
 
     delete returnedObject.passwordHash;
+    delete returnedObject.key;
   },
 });
-
 
 const User = mongoose.model("User", schema);
 module.exports = User;

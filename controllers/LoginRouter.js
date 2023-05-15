@@ -25,6 +25,9 @@ router.post("", async (request, response) => {
     id: userExists.id,
   };
   const token = jwt.sign(payload, process.env.SECRET);
+  //Since i'm not gonna use ExpiresIn, im gonna store the token in the db and remove it when user logs out.
+  userExists.key = token;
+  await userExists.save();
 
   return response.status(200).json({ token }).end();
 });

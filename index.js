@@ -4,6 +4,7 @@ const app = express();
 const cors = require("cors");
 const userRouter = require("./controllers/UserRouter");
 const loginRouter = require("./controllers/LoginRouter");
+const logoutRouter = require("./controllers/LogoutRouter");
 
 app.use(cors());
 app.use(express.json());
@@ -15,6 +16,7 @@ app.get("/api", (request, response) =>
 );
 app.use("/api/users", userRouter)
 app.use("/api/login", loginRouter)
+app.use("/api/logout", logoutRouter)
 
 const PORT = config.PORT;
 app.listen(PORT, () => console.log(`app running on port ${PORT}`));
